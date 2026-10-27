@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDOODESKA - Authentic Japanese Dining</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ELEMEN ANIMASI BURUNG KERTAS (ORIGAMI) MELEWATI WEB -->
+    <div class="origami-bird">🕊️</div>
+    <div class="origami-bird bird-2">🕊️</div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="brand-logo">
+                <span class="kanji-badge">居酒屋</span>
+                <span class="brand-name">IDOODESKA</span>
+            </a>
+            <div class="nav-menu" id="navMenu">
+                <a href="#hero" class="nav-link active">Beranda</a>
+                <a href="#menu" class="nav-link">Menu Kami</a>
+                <a href="#about" class="nav-link">Tentang Kami</a>
+                <a href="#contact" class="nav-link">Kontak & Reservasi</a>
+            </div>
+            <div class="nav-actions" style="display: flex; align-items: center; gap: 12px;">
+                <!-- Tombol Pesan Langsung / Dine-In -->
+                <button class="btn btn-outline" id="directOrderNavBtn" style="padding: 6px 14px; font-size: 0.85rem;">⚡ Pesan Langsung</button>
+                <!-- Tombol Keranjang Belanja -->
+                <button class="cart-nav-btn" id="cartNavBtn" title="Buka Keranjang">
+                    🛒 <span id="cartCountBadge">0</span>
+                </button>
+                <a href="#contact" class="btn btn-primary nav-btn">Reservasi Meja</a>
+            </div>
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Menu">☰</button>
+        </div>
+    </nav>
+
+    <!-- MODAL / POPUP KERANJANG BELANJA -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-modal-content">
+            <div class="cart-header">
+                <h3>🛒 Keranjang Pesanan Anda</h3>
+                <button class="close-cart-btn" id="closeCartBtn">&times;</button>
+            </div>
+            <div class="cart-items-list" id="cartItemsList">
+                <p class="empty-cart-text">Keranjang masih kosong. Yuk pilih menu favoritmu!</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total-section">
+                    <span>Total Pembayaran:</span>
+                    <strong id="cartTotalPrice">Rp 0</strong>
+                </div>
+                <button class="btn btn-primary btn-block" id="checkoutBtn">Lanjut ke Form Pemesanan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL POPUP FORM CHECKOUT PESAN LANGSUNG -->
+    <div class="cart-modal" id="directCheckoutModal">
+        <div class="cart-modal-content">
+            <div class="cart-header">
+                <h3>📝 Formulir Pesanan Online / Dine-In</h3>
+                <button class="close-cart-btn" id="closeDirectModal">&times;</button>
+            </div>
+            <form id="directOrderForm">
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label for="orderName">Nama Pemesan</label>
+                    <input type="text" id="orderName" class="form-control" placeholder="Nama lengkap Anda" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label for="orderPhone">Nomor WhatsApp</label>
+                    <input type="tel" id="orderPhone" class="form-control" placeholder="08xxxxxxxxxx" required>
+                </div>
+                <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+                    <div class="form-group">
+                        <label for="orderType">Tipe Pesanan</label>
+                        <select id="orderType" class="form-control">
+                            <option value="Makan di Tempat (Dine-In)">Makan di Tempat</option>
+                            <option value="Bawa Pulang (Takeaway)">Bawa Pulang</option>
+                            <option value="Pesan Antar (Delivery)">Pesan Antar</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="orderTable">Nomor Meja / Info</label>
+                        <input type="text" id="orderTable" class="form-control" placeholder="Contoh: Meja 05 / Takeaway">
+                    </div>
+                </div>
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label for="orderAddress">Alamat / Catatan Tambahan</label>
+                    <textarea id="orderAddress" class="form-control" rows="2" placeholder="Masukkan alamat pengiriman atau catatan makanan..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Kirim Pesanan ke WhatsApp Owner 🚀</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- HERO SECTION DENGAN VIDEO BACKGROUND -->
+    <section class="hero-section" id="hero">
+        <div class="hero-bg">
+            <video autoplay loop muted playsinline class="hero-video">
+                <source src="hero-bg (1).mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-tag">Authentic Izakaya Dining</span>
+                <h1 class="hero-title">Rasakan Kehangatan Kuliner Otentik Jepang</h1>
+                <p class="hero-desc">Nikmati kelezatan ramen racikan chef berpengalaman, olahan sushi segar, dan hidangan klasik khas Tokyo di suasana malam yang hangat dan menyenangkan.</p>
+                <div class="hero-action">
+                    <a href="#menu" class="btn btn-primary">Lihat Menu</a>
+                    <a href="#about" class="btn btn-outline">Kisah Kami</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES BAR -->
+    <section class="features-bar">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-item">
+                    <span class="feature-icon">🍜</span>
+                    <div>
+                        <h4>Bahan Segar Berkualitas</h4>
+                        <p>Diimpor langsung & dikelola segar setiap hari</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">👨‍🍳</span>
+                    <div>
+                        <h4>Chef Berpengalaman</h4>
+                        <p>Resep asli dengan teknik memasak otentik</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🏮</span>
+                    <div>
+                        <h4>Suasana Nyaman</h4>
+                        <p>Desain interior otentik ala Izakaya Tokyo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU SECTION -->
+    <section class="menu-section" id="menu">
+        <div class="container">
+            <div class="section-title">
+                <span class="sub-heading">献立表 • Menu Pilihan</span>
+                <h2>Sajian Spesial IDOODESKA</h2>
+                <p>Klik gambar untuk pesan langsung, atau klik tombol keranjang (🛒 +) untuk memasukkan ke keranjang.</p>
+            </div>
+
+            <!-- ================= KATEGORI MAKANAN UTAMA (23 ITEM) ================= -->
+            <div class="menu-category">
+                <div class="category-header">
+                    <span class="category-icon">🍜</span>
+                    <h3 class="category-title">Makanan Utama (Main Course)</h3>
+                </div>
+                <div class="menu-grid horizontal-scroll">
+                    <!-- Item 1 -->
+                    <div class="menu-card" data-id="m1" data-name="Tori Shoyu Ramen" data-price="48000">
+                        <div class="menu-img-box">
+                            <img src="ramen.jpg" alt="Tori Shoyu Ramen" class="menu-img">
+                            <div class="menu-badges"><span class="menu-badge badge-popular">Terlaris</span></div>
+                            <span class="rating-badge">★ 4.9</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Tori Shoyu Ramen</h4>
+                            <p class="product-desc">Ramen kuah kaldu ayam gurih khas Tokyo dengan topping chashu ayam, telur ajitama, dan nori.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 48.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="menu-card" data-id="m2" data-name="Salmon Mentai Don" data-price="58000">
+                        <div class="menu-img-box">
+                            <img src="salmon.jpg" alt="Salmon Mentai Don" class="menu-img">
+                            <div class="menu-badges"><span class="menu-badge badge-recom">Rekomendasi</span></div>
+                            <span class="rating-badge">★ 4.8</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Salmon Mentai Don</h4>
+                            <p class="product-desc">Nasi Jepang hangat disajikan dengan irisan salmon segar dan saus mentai aburi yang dibakar gurih.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 58.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="menu-card" data-id="m3" data-name="Chicken Katsu Curry" data-price="45000">
+                        <div class="menu-img-box">
+                            <img src="curry.jpg" alt="Chicken Katsu Curry" class="menu-img">
+                            <span class="rating-badge">★ 4.7</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Chicken Katsu Curry</h4>
+                            <p class="product-desc">Ayam katsu renyah disiram saus kari pekat khas Jepang dan potongan kentang serta wortel lembut.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 45.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="menu-card" data-id="m4" data-name="Beef Gyudon Deluxe" data-price="52000">
+                        <div class="menu-img-box">
+                            <img src="gyudon.jpg" alt="Beef Gyudon Deluxe" class="menu-img">
+                            <div class="menu-badges"><span class="menu-badge badge-popular">Populer</span></div>
+                            <span class="rating-badge">★ 4.9</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Beef Gyudon Deluxe</h4>
+                            <p class="product-desc">Irisan daging sapi Shortplate berkualitas yang dimasak manis gurih dengan bawang bombay dan telur.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 52.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 5 -->
+                    <div class="menu-card" data-id="m5" data-name="Takoyaki Special (6 pcs)" data-price="30000">
+                        <div class="menu-img-box">
+                            <img src="takoyaki.jpg" alt="Takoyaki Special" class="menu-img">
+                            <span class="rating-badge">★ 4.8</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Takoyaki Special (6 pcs)</h4>
+                            <p class="product-desc">Bola-bola gandum isi gurita segar bertabur katsuobushi melimpah dan saus takoyaki otentik.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 30.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 6 -->
+                    <div class="menu-card" data-id="m6" data-name="Ebi Tempura Roll" data-price="42000">
+                        <div class="menu-img-box">
+                            <img src="sushi.jpg" alt="Ebi Tempura Roll" class="menu-img">
+                            <span class="rating-badge">★ 4.7</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Ebi Tempura Roll</h4>
+                            <p class="product-desc">Sushi roll isi udang tempura krispi, alpukat segar, dan balutan kremes renyah luar biasa.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 42.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 7 -->
+                    <div class="menu-card" data-id="m7" data-name="Yakitori Platter (5 Katsu)" data-price="38000">
+                        <div class="menu-img-box">
+                            <img src="yakitori.jpg" alt="Yakitori Platter" class="menu-img">
+                            <span class="rating-badge">★ 4.8</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Yakitori Platter (5 Katsu)</h4>
+                            <p class="product-desc">Kombinasi sate ayam khas Jepang panggang saus Tare lezat dan baluran daun bawang segar.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 38.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 8 -->
+                    <div class="menu-card" data-id="m8" data-name="Unagi Kabayaki Don" data-price="85000">
+                        <div class="menu-img-box">
+                            <img src="unagi.jpg" alt="Unagi Kabayaki Don" class="menu-img">
+                            <div class="menu-badges"><span class="menu-badge badge-recom">Mewah</span></div>
+                            <span class="rating-badge">★ 5.0</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Unagi Kabayaki Don</h4>
+                            <p class="product-desc">Daging belut panggang ala Jepang yang lembut disiram saus kabayaki karamelisasi lezat.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 85.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 9 -->
+                    <div class="menu-card" data-id="m9" data-name="Aburi Salmon Nigiri" data-price="50000">
+                        <div class="menu-img-box">
+                            <img src="nigiri.jpg" alt="Aburi Salmon Nigiri" class="menu-img">
+                            <span class="rating-badge">★ 4.9</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Aburi Salmon Nigiri</h4>
+                            <p class="product-desc">Sushi nigiri dengan irisan salmon setengah matang yang dibakar lembut bertabur saus spesial.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 50.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 10 -->
+                    <div class="menu-card" data-id="m10" data-name="Black Garlic Ramen" data-price="55000">
+                        <div class="menu-img-box">
+                            <img src="black-ramen.jpg" alt="Black Garlic Ramen" class="menu-img">
+                            <div class="menu-badges"><span class="menu-badge badge-popular">Chef Choice</span></div>
+                            <span class="rating-badge">★ 4.9</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Black Garlic Ramen</h4>
+                            <p class="product-desc">Ramen dengan minyak bawang hitam khas Kumamoto yang pekat, aromatik, dan sangat gurih.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 55.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 11 -->
+                    <div class="menu-card" data-id="m11" data-name="Chicken Teriyaki Bento" data-price="48000">
+                        <div class="menu-img-box">
+                            <img src="bento.jpg" alt="Chicken Teriyaki Bento" class="menu-img">
+                            <span class="rating-badge">★ 4.7</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Chicken Teriyaki Bento</h4>
+                            <p class="product-desc">Paket bento lengkap dengan ayam teriyaki manis gurih, salad segar, dan gyoza goreng.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 48.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 12 -->
+                    <div class="menu-card" data-id="m12" data-name="Spicy Tuna Roll" data-price="44000">
+                        <div class="menu-img-box">
+                            <img src="tuna-roll.jpg" alt="Spicy Tuna Roll" class="menu-img">
+                            <span class="rating-badge">★ 4.8</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Spicy Tuna Roll</h4>
+                            <p class="product-desc">Sushi gulung isi daging tuna cincang segar dipadu saus pedas gurih khas IDOODESKA.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 44.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 13 -->
+                    <div class="menu-card" data-id="m13" data-name="Gyoza Pan-Fried (5 pcs)" data-price="32000">
+                        <div class="menu-img-box">
+                            <img src="gyoza.jpg" alt="Gyoza Pan-Fried" class="menu-img">
+                            <span class="rating-badge">★ 4.8</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Gyoza Pan-Fried (5 pcs)</h4>
+                            <p class="product-desc">Pangsit jepang goreng teflon isi ayam dan sayuran dengan kulit renyah di bawah dan lembut di atas.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 32.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 14 -->
+                    <div class="menu-card" data-id="m14" data-name="Beef Yakiniku Don" data-price="50000">
+                        <div class="menu-img-box">
+                            <img src="yakiniku.jpg" alt="Beef Yakiniku Don" class="menu-img">
+                            <span class="rating-badge">★ 4.7</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Beef Yakiniku Don</h4>
+                            <p class="product-desc">Daging sapi tumis saus yakiniku khas Jepang disajikan di atas nasi hangat pulen.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 50.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 15 -->
+                    <div class="menu-card" data-id="m15" data-name="Dragon Roll Sushi" data-price="75000">
+                        <div class="menu-img-box">
+                            <img src="dragon-roll.jpg" alt="Dragon Roll" class="menu-img">
+                            <span class="rating-badge">★ 5.0</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Dragon Roll Sushi</h4>
+                            <p class="product-desc">Sushi premium isi udang tempura dilapisi irisan alpukat segar dan belut panggang.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 75.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 16 -->
+                    <div class="menu-card" data-id="m16" data-name="Chicken Karaage Bowl" data-price="40000">
+                        <div class="menu-img-box">
+                            <img src="karaage.jpg" alt="Chicken Karaage Bowl" class="menu-img">
+                            <span class="rating-badge">★ 4.8</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Chicken Karaage Bowl</h4>
+                            <p class="product-desc">Ayam goreng tepung gaya jepang yang juicy di dalam dan krispi di luar dengan saus mayo wijen.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 40.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 17 -->
+                    <div class="menu-card" data-id="m17" data-name="Omurice Special" data-price="46000">
+                        <div class="menu-img-box">
+                            <img src="omurice.jpg" alt="Omurice Special" class="menu-img">
+                            <span class="rating-badge">★ 4.8</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Omurice Special</h4>
+                            <p class="product-desc">Nasi goreng jepang dibalut telur omelet setengah matang lembut berlumur saus demi-glace.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 46.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 18 -->
+                    <div class="menu-card" data-id="m18" data-name="Miso Ramen Deluxe" data-price="50000">
+                        <div class="menu-img-box">
+                            <img src="miso-ramen.jpg" alt="Miso Ramen Deluxe" class="menu-img">
+                            <span class="rating-badge">★ 4.9</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Miso Ramen Deluxe</h4>
+                            <p class="product-desc">Ramen dengan kuah pasta kedelai merah khas Hokkaido yang kaya rasa, hangat, dan mengenyangkan.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 50.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 19 -->
+                    <div class="menu-card" data-id="m19" data-name="Okonomiyaki Osaka Style" data-price="35000">
+                        <div class="menu-img-box">
+                            <img src="okonomiyaki.jpg" alt="Okonomiyaki" class="menu-img">
+                            <span class="rating-badge">★ 4.8</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Okonomiyaki Osaka Style</h4>
+                            <p class="product-desc">Pancake gurih khas osaka isi kol, irisan daging, dan katsuobushi melimpah di atasnya.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 35.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 20 -->
+                    <div class="menu-card" data-id="m20" data-name="Ebi Furai Bento" data-price="52000">
+                        <div class="menu-img-box">
+                            <img src="ebi-furai.jpg" alt="Ebi Furai Bento" class="menu-img">
+                            <span class="rating-badge">★ 4.9</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Ebi Furai Bento</h4>
+                            <p class="product-desc">Udang goreng tepung roti krispi ukuran besar disajikan dengan nasi jepang dan salad segar.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 52.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 21 -->
+                    <div class="menu-card" data-id="m21" data-name="Tuna Sashimi Platter" data-price="70000">
+                        <div class="menu-img-box">
+                            <img src="sashimi.jpg" alt="Tuna Sashimi" class="menu-img">
+                            <div class="menu-badges"><span class="menu-badge badge-recom">Segar</span></div>
+                            <span class="rating-badge">★ 5.0</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Tuna Sashimi Platter</h4>
+                            <p class="product-desc">Irisan daging ikan tuna segar pilihan kualitas premium disajikan dingin dengan shoyu dan wasabi.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 70.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 22 -->
+                    <div class="menu-card" data-id="m22" data-name="Chicken Katsu Don" data-price="42000">
+                        <div class="menu-img-box">
+                            <img src="katsu-don.jpg" alt="Chicken Katsu Don" class="menu-img">
+                            <span class="rating-badge">★ 4.8</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Chicken Katsu Don</h4>
+                            <p class="product-desc">Ayam katsu renyah dimasak bersama kuah dashi, telur lembut, dan bawang bombay di atas nasi.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 42.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 23 -->
+                    <div class="menu-card" data-id="m23" data-name="Chashu Fried Rice" data-price="45000">
+                        <div class="menu-img-box">
+                            <img src="chashu-rice.jpg" alt="Chashu Fried Rice" class="menu-img">
+                            <span class="rating-badge">★ 4.7</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Chashu Fried Rice</h4>
+                            <p class="product-desc">Nasi goreng gaya jepang dicampur potongan daging chashu panggang gurih dan daun bawang.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 45.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= KATEGORI MINUMAN & DESSERT (23 ITEM) ================= -->
+            <div class="menu-category">
+                <div class="category-header">
+                    <span class="category-icon">🍵</span>
+                    <h3 class="category-title">Minuman & Penutup (Beverages & Dessert)</h3>
+                </div>
+                <div class="menu-grid horizontal-scroll">
+                    <!-- Item 1 -->
+                    <div class="menu-card" data-id="d1" data-name="Matcha Latte Uji" data-price="28000">
+                        <div class="menu-img-box">
+                            <img src="matcha.jpg" alt="Matcha Latte Uji" class="menu-img">
+                            <div class="menu-badges"><span class="menu-badge badge-popular">Favorit</span></div>
+                            <span class="rating-badge">★ 4.9</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Matcha Latte Uji</h4>
+                            <p class="product-desc">Minuman matcha asli perkebunan Uji Kyoto dipadu dengan susu segar lembut dan manis pas.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 28.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="menu-card" data-id="d2" data-name="Ocha Cold Brew" data-price="12000">
+                        <div class="menu-img-box">
+                            <img src="ocha.jpg" alt="Ocha Cold Brew" class="menu-img">
+                            <span class="rating-badge">★ 4.7</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Ocha Cold Brew</h4>
+                            <p class="product-desc">Teh hijau Jepang dingin otentik yang menyegarkan dahaga setelah menikmati hidangan utama.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 12.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="menu-card" data-id="d3" data-name="Ichigo Sakura Soda" data-price="25000">
+                        <div class="menu-img-box">
+                            <img src="sakura.jpg" alt="Ichigo Sakura Soda" class="menu-img">
+                            <span class="rating-badge">★ 4.8</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Ichigo Sakura Soda</h4>
+                            <p class="product-desc">Perpaduan soda dingin dengan sirup stroberi segar dan aroma ekstrak bunga sakura harum.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 25.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="menu-card" data-id="d4" data-name="Hojicha Milk Tea" data-price="26000">
+                        <div class="menu-img-box">
+                            <img src="hojicha.jpg" alt="Hojicha Milk Tea" class="menu-img">
+                            <span class="rating-badge">★ 4.8</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Hojicha Milk Tea</h4>
+                            <p class="product-desc">Teh hijau sangrai khas Jepang dengan aroma smokey lembut yang dipadukan dengan susu segar.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 26.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 5 -->
+                    <div class="menu-card" data-id="d5" data-name="Yuzu Sparkling Tea" data-price="27000">
+                        <div class="menu-img-box">
+                            <img src="yuzu.jpg" alt="Yuzu Sparkling Tea" class="menu-img">
+                            <span class="rating-badge">★ 4.7</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Yuzu Sparkling Tea</h4>
+                            <p class="product-desc">Kesegaran ekstrak buah citrus Yuzu asli Jepang dicampur teh dingin berminyak soda alami.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 27.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 6 -->
+                    <div class="menu-card" data-id="d6" data-name="Original Ramune Soda" data-price="24000">
+                        <div class="menu-img-box">
+                            <img src="ramune.jpg" alt="Original Ramune Soda" class="menu-img">
+                            <span class="rating-badge">★ 4.9</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Original Ramune Soda</h4>
+                            <p class="product-desc">Minuman soda klasik dalam botol kelereng tradisional ikonik khas festival musim panas Jepang.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 24.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 7 -->
+                    <div class="menu-card" data-id="d7" data-name="Matcha Mochi Parfait" data-price="32000">
+                        <div class="menu-img-box">
+                            <img src="parfait.jpg" alt="Matcha Mochi Parfait" class="menu-img">
+                            <div class="menu-badges"><span class="menu-badge badge-recom">Dessert</span></div>
+                            <span class="rating-badge">★ 4.9</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Matcha Mochi Parfait</h4>
+                            <p class="product-desc">Es krim matcha kaya rasa disajikan dengan mochi kenyal, kacang merah azuki, dan wafer renyah.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 32.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 8 -->
+                    <div class="menu-card" data-id="d8" data-name="Dorayaki Azuki Supreme" data-price="22000">
+                        <div class="menu-img-box">
+                            <img src="dorayaki.jpg" alt="Dorayaki Azuki Supreme" class="menu-img">
+                            <span class="rating-badge">★ 4.8</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Dorayaki Azuki Supreme</h4>
+                            <p class="product-desc">Kue pancake lembut khas Jepang berisikan pasta kacang merah manis serta lelehan butter gurih.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 22.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 9 -->
+                    <div class="menu-card" data-id="d9" data-name="Melon Pan Ice Cream" data-price="25000">
+                        <div class="menu-img-box">
+                            <img src="melon-pan.jpg" alt="Melon Pan Ice Cream" class="menu-img">
+                            <span class="rating-badge">★ 4.8</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Melon Pan Ice Cream</h4>
+                            <p class="product-desc">Roti manis jepang bertekstur luar mirip melon dengan isian es krim vanila lembut di dalamnya.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 25.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 10 -->
+                    <div class="menu-card" data-id="d10" data-name="Tokyo Milk Pudding" data-price="20000">
+                        <div class="menu-img-box">
+                            <img src="pudding.jpg" alt="Tokyo Milk Pudding" class="menu-img">
+                            <div class="menu-badges"><span class="menu-badge badge-popular">Favorit</span></div>
+                            <span class="rating-badge">★ 4.9</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Tokyo Milk Pudding</h4>
+                            <p class="product-desc">Puding susu lembut khas Hokkaido dengan siraman karamel cair manis legit.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 20.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 11 -->
+                    <div class="menu-card" data-id="d11" data-name="Warm Sencha Green Tea" data-price="10000">
+                        <div class="menu-img-box">
+                            <img src="sencha.jpg" alt="Sencha Green Tea" class="menu-img">
+                            <span class="rating-badge">★ 4.7</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Warm Sencha Green Tea</h4>
+                            <p class="product-desc">Teh hijau seduh hangat tradisional jepang yang menenangkan selepas makan besar.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 10.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 12 -->
+                    <div class="menu-card" data-id="d12" data-name="Lychee Kakigori Ice" data-price="28000">
+                        <div class="menu-img-box">
+                            <img src="kakigori.jpg" alt="Lychee Kakigori" class="menu-img">
+                            <span class="rating-badge">★ 4.8</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Lychee Kakigori Ice</h4>
+                            <p class="product-desc">Es serut salju khas jepang dengan sirup leci manis dan buah leci segar di atasnya.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 28.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 13 -->
+                    <div class="menu-card" data-id="d13" data-name="Calpis Soda Lychee" data-price="24000">
+                        <div class="menu-img-box">
+                            <img src="calpis.jpg" alt="Calpis Soda Lychee" class="menu-img">
+                            <span class="rating-badge">★ 4.8</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Calpis Soda Lychee</h4>
+                            <p class="product-desc">Minuman susu fermentasi calpis dicampur soda segar dan sirisa buah leci pilihan.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 24.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 14 -->
+                    <div class="menu-card" data-id="d14" data-name="Black Sesame Ice Cream" data-price="25000">
+                        <div class="menu-img-box">
+                            <img src="sesame-ice.jpg" alt="Black Sesame Ice Cream" class="menu-img">
+                            <span class="rating-badge">★ 4.7</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Black Sesame Ice Cream</h4>
+                            <p class="product-desc">Es krim wijen hitam khas jepang dengan rasa gurih unik dan manis yang pas.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 25.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 15 -->
+                    <div class="menu-card" data-id="d15" data-name="Taiyaki Red Bean (2 pcs)" data-price="26000">
+                        <div class="menu-img-box">
+                            <img src="taiyaki.jpg" alt="Taiyaki Red Bean" class="menu-img">
+                            <span class="rating-badge">★ 4.9</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Taiyaki Red Bean (2 pcs)</h4>
+                            <p class="product-desc">Kue tradisional jepang berbentuk ikan dengan isian pasta kacang merah manis tebal.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 26.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 16 -->
+                    <div class="menu-card" data-id="d16" data-name="Hokkaido Cheese Tart" data-price="28000">
+                        <div class="menu-img-box">
+                            <img src="cheese-tart.jpg" alt="Hokkaido Cheese Tart" class="menu-img">
+                            <span class="rating-badge">★ 5.0</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Hokkaido Cheese Tart</h4>
+                            <p class="product-desc">Tart keju panggang lembut lumer di mulut dengan kulit pastry renyah gurih.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 28.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 17 -->
+                    <div class="menu-card" data-id="d17" data-name="Melon Soda Float" data-price="27000">
+                        <div class="menu-img-box">
+                            <img src="melon-soda.jpg" alt="Melon Ramune" class="menu-img">
+                            <span class="rating-badge">★ 4.8</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Melon Soda Float</h4>
+                            <p class="product-desc">Soda rasa melon hijau khas jepang diberi topping satu scoop es krim vanila di atasnya.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 27.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 18 -->
+                    <div class="menu-card" data-id="d18" data-name="Sakura Mochi Sweet" data-price="24000">
+                        <div class="menu-img-box">
+                            <img src="sakura-mochi.jpg" alt="Sakura Mochi" class="menu-img">
+                            <span class="rating-badge">★ 4.9</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Sakura Mochi Sweet</h4>
+                            <p class="product-desc">Kue mochi merah muda dibungkus daun sakura asin manis khas musim semi di jepang.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 24.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 19 -->
+                    <div class="menu-card" data-id="d19" data-name="Matcha Ice Blended" data-price="30000">
+                        <div class="menu-img-box">
+                            <img src="matcha-blend.jpg" alt="Matcha Ice Blended" class="menu-img">
+                            <span class="rating-badge">★ 4.8</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Matcha Ice Blended</h4>
+                            <p class="product-desc">Minuman matcha smoothies dingin dengan taburan serbuk matcha murni dan whipped cream.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 30.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 20 -->
+                    <div class="menu-card" data-id="d20" data-name="Adzuki Red Bean Soup" data-price="22000">
+                        <div class="menu-img-box">
+                            <img src="red-bean-soup.jpg" alt="Red Bean Soup" class="menu-img">
+                            <span class="rating-badge">★ 4.7</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Adzuki Red Bean Soup</h4>
+                            <p class="product-desc">Sup kacang merah manis hangat khas jepang disajikan dengan kue mochi kenyal panggang.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 22.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 21 -->
+                    <div class="menu-card" data-id="d21" data-name="Peach Japanese Soda" data-price="25000">
+                        <div class="menu-img-box">
+                            <img src="peach-soda.jpg" alt="Peach Soda" class="menu-img">
+                            <span class="rating-badge">★ 4.9</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Peach Japanese Soda</h4>
+                            <p class="product-desc">Mocktail soda segar dengan ekstrak buah persik putih manis khas musim panas di jepang.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 25.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 22 -->
+                    <div class="menu-card" data-id="d22" data-name="Mitarashi Dango (3 pcs)" data-price="20000">
+                        <div class="menu-img-box">
+                            <img src="dango.jpg" alt="Mitarashi Dango" class="menu-img">
+                            <span class="rating-badge">★ 4.8</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Mitarashi Dango (3 pcs)</h4>
+                            <p class="product-desc">Kue ketan tusuk panggang khas jepang dengan baluran saus kecap manis gurih (shoyu glaze).</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 20.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 23 -->
+                    <div class="menu-card" data-id="d23" data-name="Royal Earl Grey Milk Tea" data-price="26000">
+                        <div class="menu-img-box">
+                            <img src="earl-grey.jpg" alt="Earl Grey Tea" class="menu-img">
+                            <span class="rating-badge">★ 4.8</span>
+                        </div>
+                        <div class="menu-info">
+                            <h4 class="product-name">Royal Earl Grey Milk Tea</h4>
+                            <p class="product-desc">Teh hitam aroma bergamot khas premium dicampur susu kental lembut dan manis pas.</p>
+                            <div class="card-footer-action">
+                                <div><span class="price-label">HARGA</span><span class="product-price">Rp 26.000</span></div>
+                                <button class="add-btn">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SEKSI TENTANG KAMI -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <!-- KOLOM 1: FOTO TOKO -->
+                <div class="about-img-box">
+                    <img src="foto-toko.jpg" alt="Suasana Restoran IDOODESKA" class="about-img">
+                    <div class="experience-badge">
+                        <span class="exp-num">10+</span>
+                        <span class="exp-text">Tahun<br>Pengalaman</span>
+                    </div>
+                </div>
+                <!-- KOLOM 2: KOTAK TEKS -->
+                <div class="about-content-card">
+                    <span class="sub-heading">私たちについて • Tentang Kami</span>
+                    <h2>Menyajikan Kehangatan Resep Otentik Jepang</h2>
+                    <p><strong>IDOODESKA</strong> lahir dari kecintaan mendalam terhadap seni kuliner Jepang yang mengedepankan kesegaran bahan, ketelitian proses, dan keseimbangan rasa.</p>
+                    <p>Kami percaya bahwa makanan lezat tidak hanya mengenyangkan perut, tetapi juga menghangatkan hati. Dapur kami selalu siap menyajikan hidangan berkualitas terbaik untuk Anda dan orang tersayang.</p>
+                    <ul class="about-list">
+                        <li>✓ 100% Menggunakan Daging & Bahan Halal Pilihan</li>
+                        <li>✓ Kuah Kaldu Ditanak Hingga 8 Jam</li>
+                        <li>✓ Tanpa Bahan Pengawet Buatan</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <span class="sub-heading">お問い合わせ • Hubungi Kami</span>
+                <h2>Reservasi & Lokasi</h2>
+                <p>Ingin reservasi tempat atau punya pertanyaan? Silakan hubungi kami atau langsung datang ke lokasi kami.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="info-card">
+                        <span class="info-icon">📍</span>
+                        <div>
+                            <h4>Alamat</h4>
+                            <p>Jl. Little Tokyo No. 88, Jakarta Selatan</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <span class="info-icon">⏰</span>
+                        <div>
+                            <h4>Jam Operasional</h4>
+                            <p>Senin - Minggu: 11:00 - 23:00 WIB</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <span class="info-icon">📞</span>
+                        <div>
+                            <h4>Telepon / WhatsApp</h4>
+                            <p>+62 889-0568-2258</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-container">
+                    <form id="reservationForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Nama Lengkap</label>
+                                <input type="text" id="name" class="form-control" placeholder="Masukkan nama" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Nomor Telepon</label>
+                                <input type="tel" id="phone" class="form-control" placeholder="08xxxxxxxxxx" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="date">Tanggal Reservasi</label>
+                                <input type="date" id="date" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="guests">Jumlah Tamu</label>
+                                <input type="number" id="guests" class="form-control" min="1" max="20" value="2" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Catatan Khusus (Opsional)</label>
+                            <textarea id="message" class="form-control" rows="3" placeholder="Contoh: Tempat duduk outdoor, pesta ulang tahun..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Kirim Reservasi</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="brand-logo">
+                        <span class="kanji-badge">居酒屋</span>
+                        <span class="brand-name">IDOODESKA</span>
+                    </a>
+                    <p>Authentic Japanese Dining dengan cita rasa otentik khas Jepang. Menyajikan momen hangat di setiap hidangan.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigasi</h4>
+                    <ul>
+                        <li><a href="#hero">Beranda</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#about">Tentang Kami</a></li>
+                        <li><a href="#contact">Reservasi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Ikuti Kami</h4>
+                    <div class="social-icons">
+                        <a href="https://instagram.com/idhokml" target="_blank" class="social-link">Instagram</a>
+                        <a href="https://tiktok.com/@idho979" target="_blank" class="social-link">TikTok</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 IDOODESKA Authentic Japanese Dining. Tugas Web Sekolah.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script JS -->
+    <script src="script.js"></script>
+</body>
+</html>
